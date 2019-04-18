@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		392B499D22669A40007E13A5 /* download-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 392B499C22669A40007E13A5 /* download-2.jpg */; };
-		392B499F22669B61007E13A5 /* BreathCount .png in Resources */ = {isa = PBXBuildFile; fileRef = 392B499E22669B61007E13A5 /* BreathCount .png */; };
+		392B499F22669B61007E13A5 /* BreathCount.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B499E22669B61007E13A5 /* BreathCount.png */; };
 		392B49A12266A125007E13A5 /* Habit.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B49A02266A124007E13A5 /* Habit.png */; };
 		392B49A32266A826007E13A5 /* RespiteMAAS.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B49A22266A825007E13A5 /* RespiteMAAS.png */; };
+		3980349C2268178300293739 /* MAASViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980349B2268178300293739 /* MAASViewController.swift */; };
+		398034A022681EDF00293739 /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980349F22681EDF00293739 /* HabitViewController.swift */; };
 		FF806F8D2262879C0083BBA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF806F8C2262879C0083BBA9 /* AppDelegate.swift */; };
 		FF806F8F2262879C0083BBA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF806F8E2262879C0083BBA9 /* ViewController.swift */; };
 		FF806F922262879C0083BBA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF806F902262879C0083BBA9 /* Main.storyboard */; };
@@ -39,9 +41,11 @@
 
 /* Begin PBXFileReference section */
 		392B499C22669A40007E13A5 /* download-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "download-2.jpg"; sourceTree = "<group>"; };
-		392B499E22669B61007E13A5 /* BreathCount .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BreathCount .png"; sourceTree = "<group>"; };
+		392B499E22669B61007E13A5 /* BreathCount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BreathCount.png; sourceTree = "<group>"; };
 		392B49A02266A124007E13A5 /* Habit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Habit.png; sourceTree = "<group>"; };
 		392B49A22266A825007E13A5 /* RespiteMAAS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RespiteMAAS.png; sourceTree = "<group>"; };
+		3980349B2268178300293739 /* MAASViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAASViewController.swift; sourceTree = "<group>"; };
+		3980349F22681EDF00293739 /* HabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
 		FF806F892262879C0083BBA9 /* breatheCnt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = breatheCnt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF806F8C2262879C0083BBA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF806F8E2262879C0083BBA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,15 +110,17 @@
 			isa = PBXGroup;
 			children = (
 				FF806F8C2262879C0083BBA9 /* AppDelegate.swift */,
+				3980349F22681EDF00293739 /* HabitViewController.swift */,
 				FF806F8E2262879C0083BBA9 /* ViewController.swift */,
 				FF806F902262879C0083BBA9 /* Main.storyboard */,
 				392B49A22266A825007E13A5 /* RespiteMAAS.png */,
 				392B49A02266A124007E13A5 /* Habit.png */,
-				392B499E22669B61007E13A5 /* BreathCount .png */,
+				392B499E22669B61007E13A5 /* BreathCount.png */,
 				392B499C22669A40007E13A5 /* download-2.jpg */,
 				FF806F932262879E0083BBA9 /* Assets.xcassets */,
 				FF806F952262879E0083BBA9 /* LaunchScreen.storyboard */,
 				FF806F982262879E0083BBA9 /* Info.plist */,
+				3980349B2268178300293739 /* MAASViewController.swift */,
 			);
 			path = breatheCnt;
 			sourceTree = "<group>";
@@ -242,7 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				392B49A12266A125007E13A5 /* Habit.png in Resources */,
-				392B499F22669B61007E13A5 /* BreathCount .png in Resources */,
+				392B499F22669B61007E13A5 /* BreathCount.png in Resources */,
 				392B499D22669A40007E13A5 /* download-2.jpg in Resources */,
 				392B49A32266A826007E13A5 /* RespiteMAAS.png in Resources */,
 				FF806F972262879E0083BBA9 /* LaunchScreen.storyboard in Resources */,
@@ -274,6 +280,8 @@
 			files = (
 				FF806F8F2262879C0083BBA9 /* ViewController.swift in Sources */,
 				FF806F8D2262879C0083BBA9 /* AppDelegate.swift in Sources */,
+				3980349C2268178300293739 /* MAASViewController.swift in Sources */,
+				398034A022681EDF00293739 /* HabitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +459,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7UQD3GFB9F;
 				INFOPLIST_FILE = breatheCnt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -469,6 +478,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7UQD3GFB9F;
 				INFOPLIST_FILE = breatheCnt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
