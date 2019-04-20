@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var usrZLabel: UILabel!
     @IBOutlet weak var usrBLabel: UILabel!
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var startButton: UIButton!
     
     var rawX: Double = 0
     var rawY: Double = 0
@@ -52,8 +53,9 @@ class ViewController: UIViewController {
 //        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: Selector(update), userInfo: nil, repeats: true)
         setupAcc(interval: 0.1)
         setupMotion(interval: 0.1)
+//        setupAcc(interval: 0.1)
+//        setupMotion(interval: 0.1)
 //        setupAltimeter(interval: 0.1)
-
 //        motionManager.accelerometerUpdateInterval = 1.0
 //        motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
 //            if let myData = data{
@@ -99,6 +101,18 @@ class ViewController: UIViewController {
             print("Stopped relative altitude updates.")
         }
     }
+    
+    var start = false
+    @IBAction func startOrStop(_ sender: Any) {
+        if start == false {
+            start = true
+            setupMotion(interval: 0.01)
+        } else {
+            start = false
+            stopMotion()
+        }
+    }
+    
     func setupAcc(interval: Double) {
         motionManager.accelerometerUpdateInterval = interval
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
@@ -124,6 +138,10 @@ class ViewController: UIViewController {
     let windowSize:Int = 15
     let bias = 1.5
     var window:[Double] = Array(repeating: 0.0, count: 15)
+    let alpha = 0.45
+    let windowSize:Int = 10
+    let bias = 1.0
+    var window:[Double] = Array(repeating: 0.0, count: 10)
     let maxJump = 25.0
     var norm = 0.0
     func setupMotion(interval: Double) {
@@ -149,6 +167,11 @@ class ViewController: UIViewController {
                 self.usrX = x * self.alpha + self.usrXAvg * (1 - self.alpha)
                 self.usrY = y * self.alpha + self.usrYAvg * (1 - self.alpha)
                 self.usrZ = z * self.alpha + self.usrZAvg * (1 - self.alpha)
+                print("w:" + String(z))
+                self.usrX = x * self.alpha + self.usrXAvg * (1 - self.alpha)
+                self.usrY = y * self.alpha + self.usrYAvg * (1 - self.alpha)
+                self.usrZ = z * self.alpha + self.usrZAvg * (1 - self.alpha)
+                print("u:" + String(self.usrZ))
 //                print(self.usrZ)
 //                print("---")
                 self.usrXLabel.text = self.toString(double: self.usrX)
@@ -168,6 +191,14 @@ class ViewController: UIViewController {
     }
     let thresh = 1.8
     var count = 0
+    
+    func stopMotion() {
+        motionManager.stopDeviceMotionUpdates()
+    }
+    let thresh = 1.7
+    var count = 0
+    let proc = 1/3
+    var state = 0
     func processData() {
         self.window.removeFirst()
 //        self.window.append(self.usrZ)
@@ -182,6 +213,10 @@ class ViewController: UIViewController {
             if sample > thresh {
                 pos += 1
             } else if sample < (-1 * thresh*1.0) {
+        for sample in self.window {
+            if sample > self.thresh {
+                pos += 1
+            } else if sample < (-1 * self.thresh*0.7) {
                 neg += 1
             }
 //            if sample - prevSample > 0 {
@@ -211,6 +246,26 @@ class ViewController: UIViewController {
     
     func resetWindow() {
         self.window = Array(repeating: 0.0, count: 15)
+        if pos > self.windowSize*self.proc {
+            print("Breathing in")
+            state = 1
+//            print("b:1")
+//            resetWindow()
+        } else if neg > self.windowSize*self.proc{
+            print("Breathing out")
+            state = 0
+//            resetWindow()
+//            print("b:-1")
+        } else {
+//             print("b:0")
+        }
+//        print("p:" + String(pos))
+//        print("n:" + String(neg))
+       
+    }
+    
+    func resetWindow() {
+        self.window = Array(repeating: 0.0, count: 10)
 //        self.usrZAvg = 0.0
     }
     
@@ -243,4 +298,3 @@ class ViewController: UIViewController {
 
 
 }
-

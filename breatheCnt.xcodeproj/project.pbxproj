@@ -121,6 +121,10 @@
 				FF806F952262879E0083BBA9 /* LaunchScreen.storyboard */,
 				FF806F982262879E0083BBA9 /* Info.plist */,
 				3980349B2268178300293739 /* MAASViewController.swift */,
+				FF806F902262879C0083BBA9 /* Main.storyboard */,
+				FF806F932262879E0083BBA9 /* Assets.xcassets */,
+				FF806F952262879E0083BBA9 /* LaunchScreen.storyboard */,
+				FF806F982262879E0083BBA9 /* Info.plist */,
 			);
 			path = breatheCnt;
 			sourceTree = "<group>";
@@ -466,7 +470,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = FI.breatheCnt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -485,7 +489,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = FI.breatheCnt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
