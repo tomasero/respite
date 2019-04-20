@@ -188,6 +188,14 @@
                                     <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gmS-xb-D7X"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Df6-9i-oUu">
+                                <rect key="frame" x="50" y="437" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startOrStop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="us0-Nf-z7o"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSq-0n-56x" userLabel="rawY">
                                 <rect key="frame" x="86" y="275" width="100" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -240,6 +248,7 @@
                         <outlet property="rawYLabel" destination="iSq-0n-56x" id="RaX-Cr-C5N"/>
                         <outlet property="rawZLabel" destination="ZwR-2T-0bq" id="JU4-Pc-7hs"/>
                         <outlet property="resetButton" destination="vU5-VH-xaS" id="0xZ-e1-1N5"/>
+                        <outlet property="startButton" destination="Df6-9i-oUu" id="oHd-Sc-HV3"/>
                         <outlet property="usrBLabel" destination="F2I-Td-fdl" id="7nu-2b-cLE"/>
                         <outlet property="usrXLabel" destination="klQ-Zm-I6p" id="NDx-uR-QPL"/>
                         <outlet property="usrYLabel" destination="T4p-hX-nf9" id="PB1-X7-08E"/>
