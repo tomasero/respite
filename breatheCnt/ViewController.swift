@@ -120,6 +120,9 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    func lowPassFilter(data: )
+    
     let alpha = 0.1
     let windowSize:Int = 15
     let bias = 1.5
@@ -134,17 +137,8 @@ class ViewController: UIViewController {
                 let y = acc.y * 1000
                 var z = (acc.z * 1000) + self.bias
                 self.norm = Double((x*x + y*y + z*z).squareRoot())
-//                print(data)
-//
-//                print("x:" + String(x))
-//                print("y:" + String(y))
-                print("z:" + String(z))
-                print("p:" + String(self.usrZ))
-//                print("s:" + String(norm))
                 if abs(z) > self.maxJump {
-//                    print(self.maxJump)
                     z = self.usrZ
-//                    return
                 }
                 self.usrX = x * self.alpha + self.usrXAvg * (1 - self.alpha)
                 self.usrY = y * self.alpha + self.usrYAvg * (1 - self.alpha)
@@ -169,10 +163,9 @@ class ViewController: UIViewController {
     let thresh = 1.8
     var count = 0
     func processData() {
-        self.window.removeFirst()
-//        self.window.append(self.usrZ)
+        self.window.removeLast()
         self.window.append(self.usrZ)
-//        print(self.usrZ)
+        self.window.insert(self.usrZ, at: 0)
         var pos = 0
         var neg = 0
         var inc = 0
