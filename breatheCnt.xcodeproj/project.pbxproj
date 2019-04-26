@@ -113,17 +113,17 @@
 			children = (
 				FF806F8C2262879C0083BBA9 /* AppDelegate.swift */,
 				3980349F22681EDF00293739 /* HabitViewController.swift */,
+				3980349B2268178300293739 /* MAASViewController.swift */,
 				FF806F8E2262879C0083BBA9 /* ViewController.swift */,
 				FF1DB8C5226C3BB500E9A87E /* Signal.swift */,
 				FF806F902262879C0083BBA9 /* Main.storyboard */,
-				392B49A22266A825007E13A5 /* RespiteMAAS.png */,
 				392B49A02266A124007E13A5 /* Habit.png */,
 				392B499E22669B61007E13A5 /* BreathCount.png */,
 				392B499C22669A40007E13A5 /* download-2.jpg */,
 				FF806F932262879E0083BBA9 /* Assets.xcassets */,
 				FF806F952262879E0083BBA9 /* LaunchScreen.storyboard */,
 				FF806F982262879E0083BBA9 /* Info.plist */,
-				3980349B2268178300293739 /* MAASViewController.swift */,
+				392B49A22266A825007E13A5 /* RespiteMAAS.png */,
 			);
 			path = breatheCnt;
 			sourceTree = "<group>";

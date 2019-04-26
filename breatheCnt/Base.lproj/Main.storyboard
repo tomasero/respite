@@ -447,11 +447,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWa-dQ-a0v">
+                                <rect key="frame" x="39" y="709" width="86" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="calculateScore:" destination="OyM-bs-O89" eventType="touchUpInside" id="JDN-aI-DUG"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11U-Yv-xjN">
+                                <rect key="frame" x="229" y="715" width="19" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="wOJ-u0-icx"/>
                     </view>
                     <connections>
+                        <outlet property="calcButton" destination="MWa-dQ-a0v" id="9N7-Jn-awG"/>
                         <outlet property="q1Label" destination="p0Q-Go-zHT" id="B4a-vW-wkY"/>
                         <outlet property="q1Slider" destination="wNo-s2-DhQ" id="OoW-TO-sOk"/>
                         <outlet property="q2Label" destination="j9F-yo-9Sy" id="7gy-AG-Uuv"/>
@@ -462,6 +479,7 @@
                         <outlet property="q4Slider" destination="Tv9-AW-cg3" id="IC4-U6-Qc1"/>
                         <outlet property="q5Label" destination="7fK-XD-9Dw" id="tvX-Ck-pAs"/>
                         <outlet property="q5Slider" destination="QET-Rt-AD9" id="fSi-he-K04"/>
+                        <outlet property="scoreLabel" destination="11U-Yv-xjN" id="m2S-7S-ast"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwV-7Q-2Zu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1005,7 +1023,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <mutableString key="content">The Mindful Attention Awareness Scale (MAAS) has the longest empirical track record as a valid measure of trait mindfulness. This scale focuses on daily mindfulness, not mindfulness during meditation practice. Studies have found the MAAS to be significantly and inversely associated with a variety of mental health indicators including anxiety, hostility, depression, impulsiveness, somatization, disturbed mood, neuroticism, and negative affect. MAAS is further positively associated with mental and physical health metrics including self-esteem, optimism, positive affect, autonomy, self-control, perceived general health, physical functioning, and life satisfaction. </mutableString>
+                                        <string key="content">The Mindful Attention Awareness Scale (MAAS) has the longest empirical track record as a valid measure of trait mindfulness. This scale focuses on daily mindfulness, not mindfulness during meditation practice. Studies have found the MAAS to be significantly and inversely associated with a variety of mental health indicators including anxiety, hostility, depression, impulsiveness, somatization, disturbed mood, neuroticism, and negative affect. MAAS is further positively associated with mental and physical health metrics including self-esteem, optimism, positive affect, autonomy, self-control, perceived general health, physical functioning, and life satisfaction. </string>
                                         <attributes>
                                             <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

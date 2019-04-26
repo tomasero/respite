@@ -50,7 +50,7 @@ class ViewController: UIViewController {
 //        motionManager.startMagnetometerUpdates()
 //        motionManager.startDeviceMotionUpdates()
 //        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: Selector(update), userInfo: nil, repeats: true)
-        setupAcc(interval: 0.1)
+//        setupAcc(interval: 0.1)
         setupMotion(interval: 0.1)
 //        setupAltimeter(interval: 0.1)
 
@@ -148,8 +148,8 @@ class ViewController: UIViewController {
                 self.usrYLabel.text = self.toString(double: self.usrY)
                 self.usrZLabel.text = self.toString(double: self.usrZ)
                 let rawS = String(format: "%.3f, %.3f, %.3f", x, y, z)
-                let usrS = String(format: "%.3f, %.3f, %.3f", self.usrX, self.usrY, self.usrZ)
-//                print(rawS)
+//                let usrS = String(format: "%.3f, %.3f, %.3f", self.usrX, self.usrY, self.usrZ)
+                print(rawS)
 //                print(usrS)
 //                print("---------------")
                 self.usrXAvg = self.usrX
