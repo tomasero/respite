@@ -121,7 +121,6 @@ class ViewController: UIViewController {
         }
     }
     
-    func lowPassFilter(data: )
     
     let alpha = 0.1
     let windowSize:Int = 15
@@ -160,12 +159,16 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+
+
+    
+    
     let thresh = 1.8
     var count = 0
     func processData() {
-        self.window.removeLast()
         self.window.append(self.usrZ)
-        self.window.insert(self.usrZ, at: 0)
+        self.window.removeFirst()
         var pos = 0
         var neg = 0
         var inc = 0

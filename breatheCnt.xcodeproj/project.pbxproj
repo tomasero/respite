@@ -13,6 +13,7 @@
 		392B49A32266A826007E13A5 /* RespiteMAAS.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B49A22266A825007E13A5 /* RespiteMAAS.png */; };
 		3980349C2268178300293739 /* MAASViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980349B2268178300293739 /* MAASViewController.swift */; };
 		398034A022681EDF00293739 /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3980349F22681EDF00293739 /* HabitViewController.swift */; };
+		FF1DB8C6226C3BB500E9A87E /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1DB8C5226C3BB500E9A87E /* Signal.swift */; };
 		FF806F8D2262879C0083BBA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF806F8C2262879C0083BBA9 /* AppDelegate.swift */; };
 		FF806F8F2262879C0083BBA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF806F8E2262879C0083BBA9 /* ViewController.swift */; };
 		FF806F922262879C0083BBA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF806F902262879C0083BBA9 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		392B49A22266A825007E13A5 /* RespiteMAAS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RespiteMAAS.png; sourceTree = "<group>"; };
 		3980349B2268178300293739 /* MAASViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAASViewController.swift; sourceTree = "<group>"; };
 		3980349F22681EDF00293739 /* HabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
+		FF1DB8C5226C3BB500E9A87E /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		FF806F892262879C0083BBA9 /* breatheCnt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = breatheCnt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF806F8C2262879C0083BBA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF806F8E2262879C0083BBA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				FF806F8C2262879C0083BBA9 /* AppDelegate.swift */,
 				3980349F22681EDF00293739 /* HabitViewController.swift */,
 				FF806F8E2262879C0083BBA9 /* ViewController.swift */,
+				FF1DB8C5226C3BB500E9A87E /* Signal.swift */,
 				FF806F902262879C0083BBA9 /* Main.storyboard */,
 				392B49A22266A825007E13A5 /* RespiteMAAS.png */,
 				392B49A02266A124007E13A5 /* Habit.png */,
@@ -279,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF806F8F2262879C0083BBA9 /* ViewController.swift in Sources */,
+				FF1DB8C6226C3BB500E9A87E /* Signal.swift in Sources */,
 				FF806F8D2262879C0083BBA9 /* AppDelegate.swift in Sources */,
 				3980349C2268178300293739 /* MAASViewController.swift in Sources */,
 				398034A022681EDF00293739 /* HabitViewController.swift in Sources */,
