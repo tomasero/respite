@@ -33,6 +33,8 @@ class HabitViewController: UIViewController {
   @IBOutlet weak var q10Label: UILabel!
   @IBOutlet weak var q11Label: UILabel!
   @IBOutlet weak var q12Label: UILabel!
+  @IBOutlet weak var calcButton: UIButton!
+  @IBOutlet weak var scoreLabel: UILabel!
   
   var q1Value: Int = 1
   var q2Value: Int = 1
@@ -46,6 +48,18 @@ class HabitViewController: UIViewController {
   var q10Value: Int = 1
   var q11Value: Int = 1
   var q12Value: Int = 1
+  var score: Float = 0.0
+  
+  func scoreHabit() -> Float {
+    score = Float(((q1Value) + (q2Value) + (q3Value) + (q4Value) + (q5Value) + (q6Value) + (q7Value) + (q8Value) + (q9Value) + (q10Value) + (q11Value) + (q12Value)) / 12)
+      print(score)
+      return score
+  }
+    
+    @IBAction func calculateScore(_ sender: UIButton) {
+      score = scoreHabit()
+      scoreLabel.text = String(score)
+    }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -102,6 +116,7 @@ class HabitViewController: UIViewController {
     q12Slider.minimumValue = 1
     q12Label.text = String(self.q12Value)
   }
+    
   
   @IBAction func q1Updated(_ sender: UISlider) {
     q1Value = Int(sender.value)
