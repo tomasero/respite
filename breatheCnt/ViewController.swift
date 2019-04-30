@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     let motionManager = CMMotionManager()
     let altimeter = CMAltimeter()
-    var timer: Timer!
+    var timer = Timer()
     @IBOutlet weak var rawXLabel: UILabel!
     @IBOutlet weak var rawYLabel: UILabel!
     @IBOutlet weak var rawZLabel: UILabel!
@@ -23,6 +23,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var usrZLabel: UILabel!
     @IBOutlet weak var usrBLabel: UILabel!
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var breathsLabel: UILabel!
+    @IBOutlet weak var timeStepper: UIStepper!
     
     var rawX: Double = 0
     var rawY: Double = 0
@@ -44,28 +47,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-//        motionManager.startAccelerometerUpdates()
-//        motionManager.startGyroUpdates()
-//        motionManager.startMagnetometerUpdates()
-//        motionManager.startDeviceMotionUpdates()
-//        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: Selector(update), userInfo: nil, repeats: true)
-//        setupAcc(interval: 0.1)
-        setupMotion(interval: 0.1)
-//        setupAltimeter(interval: 0.1)
-
-//        motionManager.accelerometerUpdateInterval = 1.0
-//        motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
-//            if let myData = data{
-//                print(myData)
-//            }
-//        }
-//        motionManager.deviceMotionUpdateInterval = 1.0
-//        motionManager.startDeviceMotionUpdates(to: OperationQueue.current!) { (data, error) in
-//            if let myData = data{
-//                print(myData)
-//            }
-//        }
+        timeStepper.wraps = true
+        timeStepper.autorepeat = true
+        timeStepper.maximumValue = 5
+        timeStepper.minimumValue = 1
+        timeStepper.value = 1
     }
 //    var pressure:Float = 0.00
 //    var pressureInHg:Float = 0.00
@@ -122,92 +108,32 @@ class ViewController: UIViewController {
     }
     
     
+    
     let alpha = 0.1
     let windowSize:Int = 15
     let bias = 1.5
     var window:[Double] = Array(repeating: 0.0, count: 15)
     let maxJump = 25.0
     var norm = 0.0
+    var sessionData: [Double] = []
     func setupMotion(interval: Double) {
+        self.sessionData = []
         motionManager.deviceMotionUpdateInterval = interval
         motionManager.startDeviceMotionUpdates(to: OperationQueue.current!) { (data, error) in
             if let acc = data?.userAcceleration {
-                let x = acc.x * 1000
-                let y = acc.y * 1000
-                var z = (acc.z * 1000) + self.bias
-                self.norm = Double((x*x + y*y + z*z).squareRoot())
-                if abs(z) > self.maxJump {
-                    z = self.usrZ
-                }
-                self.usrX = x * self.alpha + self.usrXAvg * (1 - self.alpha)
-                self.usrY = y * self.alpha + self.usrYAvg * (1 - self.alpha)
-                self.usrZ = z * self.alpha + self.usrZAvg * (1 - self.alpha)
-//                print(self.usrZ)
-//                print("---")
-                self.usrXLabel.text = self.toString(double: self.usrX)
-                self.usrYLabel.text = self.toString(double: self.usrY)
-                self.usrZLabel.text = self.toString(double: self.usrZ)
-                let rawS = String(format: "%.3f, %.3f, %.3f", x, y, z)
-//                let usrS = String(format: "%.3f, %.3f, %.3f", self.usrX, self.usrY, self.usrZ)
-                print(rawS)
-//                print(usrS)
-//                print("---------------")
-                self.usrXAvg = self.usrX
-                self.usrYAvg = self.usrY
-                self.usrZAvg = self.usrZ
-                self.processData()
+                self.usrX = (acc.x * 1000)
+                self.usrY = (acc.y * 1000)
+                self.usrZ = (acc.z * 1000) + self.bias
+                self.sessionData.append(self.usrZ)
+                self.usrXLabel.text = String(format: "%.2f", self.usrX)
+                self.usrYLabel.text = String(format: "%.2f", self.usrY)
+                self.usrZLabel.text = String(format: "%.2f", self.usrZ)
             }
         }
     }
     
-
-
-    
-    
-    let thresh = 1.8
-    var count = 0
-    func processData() {
-        self.window.append(self.usrZ)
-        self.window.removeFirst()
-        var pos = 0
-        var neg = 0
-        var inc = 0
-        var dec = 0
-//        var prevSample = 0.0
-        for sample in window {
-            if sample > thresh {
-                pos += 1
-            } else if sample < (-1 * thresh*1.0) {
-                neg += 1
-            }
-//            if sample - prevSample > 0 {
-//                inc += 1
-//            } else if sample - prevSample < 0 {
-//                dec += 1
-//            }
-//            prevSample = sample
-        }
-        
-//        print(pos, neg)
-//        print(inc, dec)
-//        print("--------")
-        if pos > windowSize*5/9 {
-//            print("Breathing in")
-            print("b:1")
-            resetWindow()
-        } else if neg > windowSize*5/9 {
-//            print("Breathing out")
-            resetWindow()
-            print("b:-1")
-        }
-        print("p:" + String(pos))
-        print("n:" + String(neg))
-//        print("b:" + String(neg))
-    }
-    
-    func resetWindow() {
-        self.window = Array(repeating: 0.0, count: 15)
-//        self.usrZAvg = 0.0
+    func stopMotion() {
+        motionManager.stopDeviceMotionUpdates()
     }
     
     func toString(double: Double) -> String {
@@ -218,25 +144,57 @@ class ViewController: UIViewController {
         
     }
     
-//    func update() {
-//        if let accelerometerData = motionManager.accelerometerData {
-//            print("accelerometer")
-//            print(accelerometerData)
-//        }
-//        if let gyroData = motionManager.gyroData {
-//            print("gyro")
-//            print(gyroData)
-//        }
-//        if let magnetometerData = motionManager.magnetometerData {
-//            print("mag")
-//            print(magnetometerData)
-//        }
-//        if let deviceMotion = motionManager.deviceMotion {
-//            print("motion")
-//            print(deviceMotion)
-//        }
-//    }
+    func startTimer(time: Double) {
+        print("startTimer")
+        print(String(time*60))
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: time*60, target: self, selector: #selector(endSession), userInfo: nil, repeats: false)
+    }
 
-
+    var sessionLength: Int = 1
+    @IBAction func lengthChanged(_ sender: UIStepper) {
+        print(sessionLength)
+        sessionLength = Int(sender.value)
+    }
+    
+    var breathing: Bool = false
+    @IBAction func startAndStop(_ sender: UIButton) {
+        if !breathing {
+            print("not breathing")
+            setupMotion(interval: 0.01)
+            breathing = true
+            sender.setTitle("Stop", for: .normal)
+            startTimer(time: Double(sessionLength))
+        } else {
+            print("breathing")
+            endSession()
+        }
+    }
+    
+    @objc func endSession() {
+        print("stopTimer")
+        timer.invalidate()
+        stopMotion()
+        breathing = false
+        startButton.setTitle("Start", for: .normal)
+        processData()
+    }
+    
+    func processData() {
+        let maxJump = 20.0
+        let cutoff = 0.25
+        let freq = 100.0
+        let thresh = 0.005
+        let windowSize = 50
+        let factorOfWindowSize: Double = 5/9
+        let minSize = 30
+        
+        if sessionData.count < windowSize {
+            breathsLabel.text = String("Session too short")
+            return
+        }
+        
+        let breaths = Signal.getBreaths(data: sessionData, maxJump: maxJump, cutoff: cutoff, freq: freq, intervalLength: windowSize, thresh: thresh, windowSize: windowSize, factor: factorOfWindowSize, minSize: minSize)
+        breathsLabel.text = String(breaths[1]!)
+    }
 }
-

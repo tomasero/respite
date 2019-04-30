@@ -990,25 +990,71 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="C7F-js-bMK">
+                                <rect key="frame" x="140" y="482" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="lengthChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="2NI-Lf-ucb"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Length" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIY-Ie-TIj">
+                                <rect key="frame" x="52" y="486" width="54" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g87-og-AOW">
+                                <rect key="frame" x="273" y="486" width="50" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PA-qR-8M3">
+                                <rect key="frame" x="170" y="540" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startAndStop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bsC-fL-KvW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Breaths" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ8-Ze-zUg">
+                                <rect key="frame" x="50" y="587" width="59" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peF-oj-Nvm">
+                                <rect key="frame" x="166" y="586" width="41" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="breathsLabel" destination="peF-oj-Nvm" id="OtN-3G-A6J"/>
                         <outlet property="rawBLabel" destination="OYq-k6-bSJ" id="lin-aq-lYr"/>
-                        <outlet property="rawXLabel" destination="GGr-D7-hKF" id="yjC-ZD-UDg"/>
-                        <outlet property="rawYLabel" destination="iSq-0n-56x" id="RaX-Cr-C5N"/>
-                        <outlet property="rawZLabel" destination="ZwR-2T-0bq" id="JU4-Pc-7hs"/>
+                        <outlet property="rawXLabel" destination="GGr-D7-hKF" id="Ks2-ZQ-qGI"/>
+                        <outlet property="rawYLabel" destination="iSq-0n-56x" id="ZBw-Lm-7le"/>
+                        <outlet property="rawZLabel" destination="ZwR-2T-0bq" id="los-Mi-enq"/>
                         <outlet property="resetButton" destination="vU5-VH-xaS" id="0xZ-e1-1N5"/>
+                        <outlet property="startButton" destination="7PA-qR-8M3" id="x1V-yi-HRj"/>
+                        <outlet property="timeStepper" destination="C7F-js-bMK" id="IEd-TO-rgx"/>
                         <outlet property="usrBLabel" destination="F2I-Td-fdl" id="7nu-2b-cLE"/>
-                        <outlet property="usrXLabel" destination="klQ-Zm-I6p" id="NDx-uR-QPL"/>
-                        <outlet property="usrYLabel" destination="T4p-hX-nf9" id="PB1-X7-08E"/>
+                        <outlet property="usrXLabel" destination="klQ-Zm-I6p" id="a2m-Dp-apQ"/>
+                        <outlet property="usrYLabel" destination="T4p-hX-nf9" id="mlJ-nJ-D9g"/>
                         <outlet property="usrZLabel" destination="CGX-g4-yjJ" id="JuH-zn-g0M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="433" y="803"/>
+            <point key="canvasLocation" x="432.80000000000001" y="802.46305418719214"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="fNa-Gb-xrV">
