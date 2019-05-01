@@ -8,41 +8,29 @@
 
 import UIKit
 import CoreMotion
+import AVFoundation
 
 class ViewController: UIViewController {
     
     let motionManager = CMMotionManager()
     let altimeter = CMAltimeter()
     var timer = Timer()
-    @IBOutlet weak var rawXLabel: UILabel!
-    @IBOutlet weak var rawYLabel: UILabel!
-    @IBOutlet weak var rawZLabel: UILabel!
-    @IBOutlet weak var rawBLabel: UILabel!
     @IBOutlet weak var usrXLabel: UILabel!
     @IBOutlet weak var usrYLabel: UILabel!
     @IBOutlet weak var usrZLabel: UILabel!
-    @IBOutlet weak var usrBLabel: UILabel!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var breathsLabel: UILabel!
     @IBOutlet weak var timeStepper: UIStepper!
+    @IBOutlet weak var timeLabel: UILabel!
     
-    var rawX: Double = 0
-    var rawY: Double = 0
-    var rawZ: Double = 0
     var usrX: Double = 0
     var usrY: Double = 0
     var usrZ: Double = 0
 
-    var rawXAvg: Double = 0
-    var rawYAvg: Double = 0
-    var rawZAvg: Double = 0
     var usrXAvg: Double = 0
     var usrYAvg: Double = 0
     var usrZAvg: Double = 0
-    
-    var rawB: Int = 0
-    var usrB: Int = 0
     
     
     override func viewDidLoad() {
@@ -85,28 +73,28 @@ class ViewController: UIViewController {
             print("Stopped relative altitude updates.")
         }
     }
-    func setupAcc(interval: Double) {
-        motionManager.accelerometerUpdateInterval = interval
-        motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
-            if let acc = data?.acceleration {
-                self.rawX = acc.x * self.alpha + self.rawXAvg * (1 - self.alpha)
-                self.rawY = acc.y * self.alpha + self.rawYAvg * (1 - self.alpha)
-                self.rawZ = acc.z * self.alpha + self.rawZAvg * (1 - self.alpha)
-                self.rawXAvg = self.rawX
-                self.rawYAvg = self.rawY
-                self.rawZAvg = self.rawZ
-                self.rawXLabel.text = self.toString(double: self.rawX)
-                self.rawYLabel.text = self.toString(double: self.rawY)
-                self.rawZLabel.text = self.toString(double: self.rawZ)
-//                let rawS = String(format: "%.3f, %.3f, %.3f", self.rawX, self.rawY, self.rawZ)
-//                print(rawS)
-//                let usrS = String(format: "%.3f, %.3f, %.3f", self.usrX, self.usrY, self.usrZ)
-//                print(usrS)
-//                print("---------------")
-            }
-        }
-    }
-    
+//    func setupAcc(interval: Double) {
+//        motionManager.accelerometerUpdateInterval = interval
+//        motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
+//            if let acc = data?.acceleration {
+//                self.rawX = acc.x * self.alpha + self.rawXAvg * (1 - self.alpha)
+//                self.rawY = acc.y * self.alpha + self.rawYAvg * (1 - self.alpha)
+//                self.rawZ = acc.z * self.alpha + self.rawZAvg * (1 - self.alpha)
+//                self.rawXAvg = self.rawX
+//                self.rawYAvg = self.rawY
+//                self.rawZAvg = self.rawZ
+//                self.rawXLabel.text = self.toString(double: self.rawX)
+//                self.rawYLabel.text = self.toString(double: self.rawY)
+//                self.rawZLabel.text = self.toString(double: self.rawZ)
+////                let rawS = String(format: "%.3f, %.3f, %.3f", self.rawX, self.rawY, self.rawZ)
+////                print(rawS)
+////                let usrS = String(format: "%.3f, %.3f, %.3f", self.usrX, self.usrY, self.usrZ)
+////                print(usrS)
+////                print("---------------")
+//            }
+//        }
+//    }
+//
     
     
     let alpha = 0.1
@@ -141,20 +129,32 @@ class ViewController: UIViewController {
     }
     
     @IBAction func reset(_ sender: Any) {
-        
+        endSession()
+        self.breathsLabel.text = String(0)
+        self.usrXLabel.text = String(0)
+        self.usrYLabel.text = String(0)
+        self.usrZLabel.text = String(0)
+    }
+    
+    func playSound() {
+        let fileURL = URL(string: "/System/Library/Audio/UISounds/nano/Alarm_Nightstand_Haptic.caf")
+        var soundID: SystemSoundID = 0
+        AudioServicesCreateSystemSoundID(fileURL! as CFURL, &soundID)
+        AudioServicesPlaySystemSound(soundID)
     }
     
     func startTimer(time: Double) {
         print("startTimer")
         print(String(time*60))
         timer.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: time*60, target: self, selector: #selector(endSession), userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: time*60, target: self, selector: #selector(stopTimer), userInfo: nil, repeats: false)
     }
 
-    var sessionLength: Int = 1
+    var sessionLength: Double = 1
     @IBAction func lengthChanged(_ sender: UIStepper) {
+        sessionLength = sender.value
         print(sessionLength)
-        sessionLength = Int(sender.value)
+        timeLabel.text = String(Int(sessionLength))
     }
     
     var breathing: Bool = false
@@ -164,15 +164,20 @@ class ViewController: UIViewController {
             setupMotion(interval: 0.01)
             breathing = true
             sender.setTitle("Stop", for: .normal)
-            startTimer(time: Double(sessionLength))
+            startTimer(time: sessionLength)
         } else {
             print("breathing")
             endSession()
         }
     }
     
-    @objc func endSession() {
+    @objc func stopTimer() {
         print("stopTimer")
+        playSound()
+        endSession()
+    }
+    
+    func endSession() {
         timer.invalidate()
         stopMotion()
         breathing = false
